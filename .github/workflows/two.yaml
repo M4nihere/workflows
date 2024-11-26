@@ -1,0 +1,29 @@
+name: Print note.txt
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'The branch to fetch note.txt from'
+        required: true
+        default: 'two'
+
+jobs:
+  print-note:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the specified branch
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      # Check if note.txt exists and print its content
+      - name: Print note.txt
+        run: |
+          if [ -f note.txt ]; then
+            echo "Content of note.txt:"
+            cat note.txt
+          else
+            echo "note.txt not found in branch ${{ github.event.inputs.branch }}"
+          fi

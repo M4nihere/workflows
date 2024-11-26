@@ -15,9 +15,4 @@ jobs:
 
       # Check if note.txt exists and print its content
       - name: Print note.txt
-        run: |
-          if [ -f note.txt ]; then
-            echo "Content of note.txt:"
-            cat note.txt
-          else
-            echo "note.txt not found in the repository."
+        run: cat note.txt
